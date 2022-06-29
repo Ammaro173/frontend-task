@@ -29,13 +29,13 @@ yarn create next-app --example with-mdbreact <name of the app>
 
 - run `yarn install` or `npm install`
 
-- run `yarn dev` or `npm run dev`
+- run `npm run cypress`
 
 - open the browser and navigate to `http://localhost:3000` to change the port you can specify `yarn dev --port <port number>`
 
 - to run test file `yarn test` or `npm run test`
 
-- also check it deployed on netlify by navigating to <https://62bcab1d8464c3009442e097--fabulous-donut-cbad68.netlify.app/>
+- also check it deployed on netlify by navigating to <https://fabulous-donut-cbad68.netlify.app//>
 
 ## Checklist
 
