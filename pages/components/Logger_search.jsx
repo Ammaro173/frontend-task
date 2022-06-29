@@ -13,9 +13,6 @@ export default function TableRender() {
 	const [search, setSearch] = useState({});
 
 
-	// const [refresh, setRefresh] = useState();
-	// const [selector, setSelector] = useState('');
-
 	// a set start for data table with init value of columns and rows using MDB DataTable
 	const [datatable, setDatatable] = useState(
 		{
@@ -71,7 +68,7 @@ export default function TableRender() {
 	function handleClick() {
 
 		setfiltereddata(datatable?.rows.filter((e) => {
-			return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type) || (e.application_Type.toString() == search.action_details) || (e.date_time.toString().slice(0, 10) >= search.from_date) || (e.date_time.toString().slice(0, 10) <= search.to_date)
+			return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type) || (e.application_Type.toString() == search.application_type) || (e.date_time.toString().slice(0, 10) >= search.from_date) || (e.date_time.toString().slice(0, 10) <= search.to_date)
 		}))
 	}
 
@@ -161,47 +158,6 @@ export default function TableRender() {
 		</>
 	);
 }
-
-
-// search_name={search_name} setSearch_name={setSearch_name} search_actionType={search_actionType} setSearch_actionType={setSearch_actionType} search_Application_ID={search_Application_ID} setSearch_Application_ID={setSearch_Application_ID} 
-
-// const [search_name, setSearch_name] = useState('');
-// const [search_actionType, setSearch_actionType] = useState('');
-// const [search_Application_ID, setSearch_Application_ID] = useState('');
-// const [search_logger, setSearch_logger] = useState('');
-
-// .filter((value) => {
-// 	if (search_name == '') {
-// 		if (search_Application_ID == '') {
-// 			console.log("cccc", value.applicationId);
-// 			return value;
-// 		}
-// 		else if (value.applicationId.toString().includes(search_Application_ID.toLocaleLowerCase())) {
-// 			return value;
-// 		}
-// 		console.log("aaaa", value.logId);
-// 		return value;
-// 	}
-// 	else if (value.logId.toString().includes(search_name.toLocaleLowerCase())) {
-// 		console.log("bbbbb", value.logId);
-// 		return value;
-// 	}
-// 	// if (search_actionType == '') {
-// 	// 	return value;
-// 	// }
-// 	// else if (value.actionType.toString().includes(search_actionType.toLocaleLowerCase())) {
-// 	// 	return value;
-// 	// }
-
-// 	// if (search_Application_ID == '') {
-// 	// 	console.log("cccc", value.applicationId);
-// 	// 	return value;
-// 	// }
-// 	// else if (value.applicationId.toString().includes(search_Application_ID.toLocaleLowerCase())) {
-// 	// 	return value;
-// 	// }
-// })
-
 
 		// console.log(datatable?.rows);
 		// if (filtereddata) {
