@@ -1,4 +1,4 @@
-// import { mdbreact } from 'mdbreact'; 
+
 export default function NavBar() {
 	return (
 		<><nav aria-label="breadcrumb">

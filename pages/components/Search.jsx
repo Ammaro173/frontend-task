@@ -3,16 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const SearchBar = ({ click, change }) => {
 
-	// const startDate
-	// const endDate
-
-	// function filterDateArray() {
-	// 	filteredDate = dates.filter(dateFilter);
-	// 	function dateFilter(date) {
-	// 		return date >= startDate.value && date <= endDate.value;
-	// 	}
-	// }
-
 	let options_applications = ['', '-/-', 'CERT_TITLE_DEED_PLOT', 'LEASE_REGISTRATION', 'ADD_POA', 'ADD_COMPANY', 'ADD_COMPANY_EMPLOYEE', 'CERT_PROP_OWNERSHIP', 'LEASE_CLOSURE']
 	let options_actions = ['', '-/-', 'DARI_REFRESH_TOKEN', 'DARI_APP_LOGIN', 'INITIATE_APPLICATION', 'SUBMIT_APPLICATION', 'ADD_EMPLOYEE']
 
