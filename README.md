@@ -35,7 +35,7 @@ yarn create next-app --example with-mdbreact <name of the app>
 
 - to run test file `yarn test` or `npm run test`
 
-- also check it deployed on netlify by navigating to <https://fabulous-donut-cbad68.netlify.app//>
+- also check it deployed on netlify by navigating to <https://main--fabulous-donut-cbad68.netlify.app/>
 
 ## Checklist
 
