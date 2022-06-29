@@ -1,23 +1,44 @@
-# mdbreact Example
+# Front-End Task
 
-This example shows how to use [MDBReact](https://mdbootstrap.com/docs/react) with Next.js.
+## Author: Ammar Abul-Feilat
 
-## Deploy your own
+## overview
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-mdbreact)
+Making a simple search Logger page with filters and a dynamic table fitched from and endpoint API Using `NextJs` and `React` with `MDB(bootstrap)`
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-mdbreact&project-name=with-mdbreact&repository-name=with-mdbreact)
+## Architecture
 
-## How to use
+- ES6 ( ECMAScript 6)
+- NextJs : 12.2.0v
+- React : 17.0.2v
+- MDB : 5.0.0v
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## How was initiated
+
+Using NextJs
 
 ```bash
-npx create-next-app --example with-mdbreact with-mdbreact-app
+npx create-next-app --example with-mdbreact <name of the app>
 # or
-yarn create next-app --example with-mdbreact with-mdbreact-app
-# or
-pnpm create next-app --example with-mdbreact with-mdbreact-app
+yarn create next-app --example with-mdbreact <name of the app>
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Run the Project
+
+- clone the repo && change directory to the repo
+
+- run `yarn install` or `npm install`
+
+- run `yarn dev` or `npm run dev`
+
+- open the browser and navigate to `http://localhost:3000` to change the port you can specify `yarn dev --port <port number>`
+
+- to run test file `yarn test` or `npm run test`
+
+- also check it deployed on netlify by navigating to <https://your-project-name.netlify.com>
+
+## Checklist
+
+- [x] Code accompanies the Unit Tests
+- [x] Usage is clearly mentioned in the README file, This including setup the project, how to run it, how to run unit test, examples,etc
+- [x] Uses the endpoint directly

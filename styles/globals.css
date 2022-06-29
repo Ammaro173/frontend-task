@@ -1,16 +1,132 @@
 html,
+
+/* general body tag settings */
 body {
-  padding: 0;
-  margin: 0;
+  padding: 5px;
+  margin: 5px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/* stying for anchors tags & remove underline effects */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* all tag settings */
 * {
   box-sizing: border-box;
 }
+
+/* change padding for all pargraph tags */
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* color effect for all horizontal rows tags */
+hr {
+  color: rgba(204, 204, 204, 0.39);
+}
+
+/* NavBar breadCrumb Styling */
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: rgb(255, 255, 255);
+  color: blue;
+  font-weight: 500;
+}
+
+/* dataTable */
+.table {
+  /* width: 100%; */
+  width: 100vw;
+  border: none;
+  padding: 0 20px;
+
+}
+
+/* give pointer effect at sorting columns headers & give bold effect for texts */
+.sorting {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* sets the pagination in the middle of the page */
+.d-flex {
+  margin: auto;
+}
+
+/* search button div settings*/
+.search-button {
+  margin-top: auto;
+  font-weight: 700;
+
+}
+
+/* search button when pressed effect*/
+.search-button:active {
+  transform: scale(0.98);
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  transform: translateY(0.4px);
+  /* Moving button 4px to y-axis */
+}
+
+/* changes styling for the search-logger button (input tag) */
+.search-logger {
+  color: white;
+  background-color: #0e50b9;
+  width: 320px;
+  margin: 3px;
+  padding: 3px;
+  border-radius: 5px;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+
+
+/* all search input tags divs */
+.search-input {
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* for all input tags styling settings */
+.filter {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+
+  height: 35px;
+  width: 11vw;
+}
+
+
+
+/* general search bar div settings */
+.search-bar {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  gap: 35px;
+}
+
+/* placeholders fadded gray color effect */
+::placeholder {
+  color: #ccc;
+}
+
+
+
+
+/* .slector {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 0 10px;
+  height: 35px;
+  width: 11vw;
+} */
