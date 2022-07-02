@@ -13,6 +13,7 @@ export default function TableRender() {
 	const [search, setSearch] = useState({});
 
 
+
 	// a set start for data table with init value of columns and rows using MDB DataTable
 	const [datatable, setDatatable] = useState(
 		{
@@ -60,17 +61,48 @@ export default function TableRender() {
 
 	//handleChange function which is called when the user enters the search text in the search bar
 	function handleChange(e) {
-		setSearch({ ...search, [e.target.name]: e.target.value });
+
+		setSearch({ ...search, [e.target.name]: e.target.value || null });
+		console.log("neww", search);
+
 	}
 
 
 	//handleClick function which is called when the user clicks on the search button(search logger)
 	function handleClick() {
 
-		setfiltereddata(datatable?.rows.filter((e) => {
-			return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type) || (e.application_Type.toString() == search.application_type) || (e.date_time.toString().slice(0, 10) >= search.from_date) || (e.date_time.toString().slice(0, 10) <= search.to_date)
-		}))
+
+		const isNullUndefEmptyStr = Object.values(search).every(value => {
+
+			if (value === null || value === undefined || value === '') {
+				return true;
+			}
+			return false;
+		});
+		if (isNullUndefEmptyStr) {
+			setfiltereddata(datatable?.rows);
+		}
+		else {
+
+			setfiltereddata(datatable?.rows.filter((e) => {
+				return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type) || (e.application_Type.toString() == search.application_type) || (e.date_time.toString().slice(0, 10) >= search.from_date) || (e.date_time.toString().slice(0, 10) <= search.to_date)
+			}))
+		}
 	}
+
+	function handleReset() {
+		Array.from(document.querySelectorAll("input")).forEach(
+			input => (input.value = null)
+		);
+		Array.from(document.querySelectorAll("select")).forEach(
+			option => (option.value = null)
+		);
+
+		setSearch({});
+
+		setfiltereddata(datatable?.rows);
+	}
+
 
 	// Create a Table using fetchData from an API endpoint
 
@@ -139,9 +171,6 @@ export default function TableRender() {
 					console.log(err);
 				});
 
-			// setSelector([... new Set(datatable?.rows.map(item => item.action))])
-
-
 		};
 		fetchData();
 	}, [search]);
@@ -151,25 +180,11 @@ export default function TableRender() {
 
 	return (
 		<>
-			<SearchBar change={handleChange} click={handleClick} />
+			<SearchBar change={handleChange} click={handleClick} resetClick={handleReset} />
 			<div className='datatable' data-mdb-full-pagination='true' data-mdb-hover='true'>
 				<MDBDataTableV5 hover entriesOptions={[10, 15, 20, 50]} searching={false} data={{ ...datatable, rows: filtereddata || datatable.rows }} fullPagination />
 			</div>
 		</>
 	);
 }
-
-		// console.log(datatable?.rows);
-		// if (filtereddata) {
-		// 	setfiltereddata(filtereddata?.rows.filter((e) => {
-		// 		return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type)
-		// 	}))
-		// }
-
-		// else {
-		// 	setfiltereddata(datatable?.rows.filter((e) => {
-		// 		return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type)
-		// 	}))
-		// 	// console.log("hereee", filtereddata);
-		// }
 
