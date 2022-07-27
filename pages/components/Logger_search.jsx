@@ -12,6 +12,9 @@ export default function TableRender() {
 	// set state for searched data which is the condition for data table
 	const [search, setSearch] = useState({});
 
+	const [unique1, setUnique1] = useState([]);
+	const [unique2, setUnique2] = useState([]);
+
 
 
 	// a set start for data table with init value of columns and rows using MDB DataTable
@@ -63,7 +66,7 @@ export default function TableRender() {
 	function handleChange(e) {
 
 		setSearch({ ...search, [e.target.name]: e.target.value || null });
-		console.log("neww", search);
+		console.log("newwww", search);
 
 	}
 
@@ -80,12 +83,13 @@ export default function TableRender() {
 			return false;
 		});
 		if (isNullUndefEmptyStr) {
-			setfiltereddata(datatable?.rows);
+			// setfiltereddata(datatable?.rows);
 		}
+
 		else {
 
-			setfiltereddata(datatable?.rows.filter((e) => {
-				return e.log_ID.toString().includes(search.employee_name) || e.application_ID.toString().includes(search.application_id) || (e.action.toString() == search.action_type) || (e.application_Type.toString() == search.application_type) || (e.date_time.toString().slice(0, 10) >= search.from_date) || (e.date_time.toString().slice(0, 10) <= search.to_date)
+			setfiltereddata(datatable?.rows.filter((ele) => {
+				return ele.log_ID.toString().includes(search.employee_name) || ele.application_ID.toString().includes(search.application_id) || (ele.action.toString() == search.action_type) || (ele.application_Type.toString() == search.application_type) || (ele.date_time.toString().slice(0, 10) >= search.from_date) || (ele.date_time.toString().slice(0, 10) <= search.to_date)
 			}))
 		}
 	}
@@ -102,12 +106,13 @@ export default function TableRender() {
 
 		setfiltereddata(datatable?.rows);
 	}
+	// console.log("tesst", datatable);
 
 
 	// Create a Table using fetchData from an API endpoint
 
 	useEffect(() => {
-		console.log(search);
+		console.log("im search log? ", search);
 		const fetchData = async () => {
 			await fetch('https://run.mocky.io/v3/a2fbc23e-069e-4ba5-954c-cd910986f40f')
 				.then((res) => res.json())
@@ -118,15 +123,30 @@ export default function TableRender() {
 						data.result.auditLog.map((ele) => {
 							let obj = {
 								log_ID: ele.logId || '-/-',
-								application_Type: ele.applicationType || '-/-',
+								application_Type: ele.applicationType,
 								application_ID: ele.applicationId || '-/-',
 								action: ele.actionType || '-/-',
 								action_Details: ele.actionDetails || '-/-',
 								date_time: `${ele.creationTimestamp.slice(0, 11)} / ${ele.creationTimestamp.slice(11, -1)}` || '-/-',
 							};
 							arr.push(obj);
+
+
+
 						});
-					// console.log('--->>', arr);
+					console.log('--->>', arr);
+					// const options_actions = [...new Set(arr.map(item => item.action))]
+					// const options_applications = [...new Set(arr.map(item => item.application_Type))]
+
+					setUnique1([...new Set(arr.map(item => item.action))])
+					setUnique2([...new Set(arr.map(item => item.application_Type))])
+					console.log('--->><<<1', unique1);
+					console.log('--->><<<2', unique2);
+					// setUnique1(options_actions)
+					// setUnique2(options_applications)
+					// localStorage.setItem('options_actions', JSON.stringify(options_actions));
+					// localStorage.setItem('options_actions', JSON.stringify(options_applications));
+
 
 					setDatatable({
 						columns: [
@@ -173,14 +193,15 @@ export default function TableRender() {
 
 		};
 		fetchData();
-	}, [search]);
+	}, []);
+
 
 
 
 
 	return (
 		<>
-			<SearchBar change={handleChange} click={handleClick} resetClick={handleReset} />
+			<SearchBar change={handleChange} click={handleClick} resetClick={handleReset} options_actions={unique1} options_applications={unique2} />
 			<div className='datatable' data-mdb-full-pagination='true' data-mdb-hover='true'>
 				<MDBDataTableV5 hover entriesOptions={[10, 15, 20, 50]} searching={false} data={{ ...datatable, rows: filtereddata || datatable.rows }} fullPagination />
 			</div>
