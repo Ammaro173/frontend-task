@@ -82,17 +82,14 @@ export default function TableRender() {
 			}
 			return false;
 		});
-		if (isNullUndefEmptyStr) {
-			// setfiltereddata(datatable?.rows);
-		}
-
-		else {
-
+		if (!isNullUndefEmptyStr) {
 			setfiltereddata(datatable?.rows.filter((ele) => {
-				return ele.log_ID.toString().includes(search.employee_name) || ele.application_ID.toString().includes(search.application_id) || (ele.action.toString() == search.action_type) || (ele.application_Type.toString() == search.application_type) || (ele.date_time.toString().slice(0, 10) >= search.from_date) || (ele.date_time.toString().slice(0, 10) <= search.to_date)
+				return (ele.log_ID?.toString().includes(search.employee_name) || ele.application_ID?.toString().includes(search.application_id) || (ele.action == search.action_type) || (ele.application_Type == search.application_type) || (ele.date_time?.slice(0, 10) >= search.from_date) || (ele.date_time?.slice(0, 10) <= search.to_date))
 			}))
 		}
 	}
+
+
 
 	function handleReset() {
 		Array.from(document.querySelectorAll("input")).forEach(
@@ -110,6 +107,8 @@ export default function TableRender() {
 
 
 	// Create a Table using fetchData from an API endpoint
+	//useEffect function which is called when the component is mounted
+
 
 	useEffect(() => {
 		console.log("im search log? ", search);
@@ -123,7 +122,7 @@ export default function TableRender() {
 						data.result.auditLog.map((ele) => {
 							let obj = {
 								log_ID: ele.logId || '-/-',
-								application_Type: ele.applicationType,
+								application_Type: ele.applicationType || '',
 								application_ID: ele.applicationId || '-/-',
 								action: ele.actionType || '-/-',
 								action_Details: ele.actionDetails || '-/-',
@@ -140,12 +139,8 @@ export default function TableRender() {
 
 					setUnique1([...new Set(arr.map(item => item.action))])
 					setUnique2([...new Set(arr.map(item => item.application_Type))])
-					console.log('--->><<<1', unique1);
-					console.log('--->><<<2', unique2);
-					// setUnique1(options_actions)
-					// setUnique2(options_applications)
-					// localStorage.setItem('options_actions', JSON.stringify(options_actions));
-					// localStorage.setItem('options_actions', JSON.stringify(options_applications));
+					// console.log('--->><<<1', unique1);
+					// console.log('--->><<<2', unique2);
 
 
 					setDatatable({
@@ -194,8 +189,6 @@ export default function TableRender() {
 		};
 		fetchData();
 	}, []);
-
-
 
 
 
